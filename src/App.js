@@ -7,7 +7,7 @@ import LaunchDetails from "./components/pages/LaunchDetails";
 
 function App() {
   return (
-      <>
+      <div className="container-fluid">
           <Router>
               <Navbar/>
               <Switch>
@@ -15,7 +15,7 @@ function App() {
                   <Route path={"/launch/:id"} component={LaunchDetails}/>
               </Switch>
           </Router>
-      </>
+      </div>
   );
 }
 

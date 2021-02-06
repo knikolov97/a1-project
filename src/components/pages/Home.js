@@ -13,7 +13,7 @@ function Home() {
         const fetchLaunches = async () => {
             setLoading(true);
             const res = await axios.get('https://api.spacexdata.com/v4/launches');
-            setLaunches(res.data);
+            setLaunches(res.data.reverse());
             setLoading(false);
         };
 
