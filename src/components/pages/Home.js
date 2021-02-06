@@ -12,10 +12,10 @@ function Home() {
     useEffect(() => {
         const fetchLaunches = async () => {
             setLoading(true);
-            const res = await axios.get('https://api.spacexdata.com/v3/launches');
+            const res = await axios.get('https://api.spacexdata.com/v4/launches');
             setLaunches(res.data);
             setLoading(false);
-        }
+        };
 
         fetchLaunches();
     }, []);
