@@ -1,7 +1,7 @@
 import React from 'react';
 import './Pagination.css';
 
-const Pagination = ({launchesPerPage, totalLaunches, paginate}) => {
+const Pagination = ({launchesPerPage, totalLaunches, paginate, currentPage}) => {
 
     const pageNumbers = [];
 
@@ -13,7 +13,7 @@ const Pagination = ({launchesPerPage, totalLaunches, paginate}) => {
         <nav>
             <ul className="pagination" id="pagination">
                 {pageNumbers.map(number => (
-                    <li key={number} className="page-item">
+                    <li key={number} className={number === currentPage ? "page-item disabled" : "page-item"}>
                         <a onClick={() => paginate(number)} className="page-link">
                             {number}
                         </a>

@@ -7,6 +7,10 @@ const Launch = ({launchId}) => {
     const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     const [launch, setLaunch] = useState({});
     const [launchUrl, setLaunchUrl] = useState('https://logos-world.net/wp-content/uploads/2020/09/SpaceX-Logo-700x394.png');
+    const [status, setStatus] = useState('');
+    const [statusStyle, setStatusStyle] = useState('');
+
+    const currentTimestamp = Math.floor(Date.now() / 1000);
 
     useEffect(() => {
 
@@ -15,6 +19,20 @@ const Launch = ({launchId}) => {
             setLaunch(res.data);
             if (res.data.links != null && res.data.links.patch.small != null) {
                 setLaunchUrl(res.data.links.patch.small);
+            }
+
+            if (res.data.upcoming && res.data.date_unix < currentTimestamp) {
+                setStatus('No info');
+                setStatusStyle('text-info');
+            } else if (res.data.upcoming) {
+                setStatus('Upcoming');
+                setStatusStyle('text-info');
+            } else if (res.data.success) {
+                setStatus('Success');
+                setStatusStyle('text-success');
+            } else {
+                setStatus('Failure');
+                setStatusStyle('text-danger');
             }
         };
 
@@ -25,7 +43,7 @@ const Launch = ({launchId}) => {
         <div className="container">
 
             <div className="card border-light mb-3" >
-                <div className="card-header">Header</div>
+                <div className="card-header">{launch.name}</div>
                 <div className="card-body">
 
                     <div className="row mt-3 mb-3">
@@ -34,26 +52,20 @@ const Launch = ({launchId}) => {
                                 <table className="table table-borderless">
                                     <tbody>
                                     <tr>
-                                        <th scope="row">Name</th>
-                                        <td>{launch.name}</td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">Date</th>
                                         <td>{(new Date(launch.date_utc)).toLocaleDateString('en-US', DATE_OPTIONS)}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Success</th>
-                                        <td className={launch.success ? "text-success" : "text-danger"}>
-                                            {launch.success ? "Success" : "Failure"}
-                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Flight Number</th>
                                         <td>{launch.flight_number}</td>
                                     </tr>
                                     <tr>
+                                        <th scope="row">Status</th>
+                                        <td className={statusStyle}>{status}</td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">Details</th>
-                                        <td>{launch.details}</td>
+                                        <td>{launch.details ? launch.details : "No details"}</td>
                                     </tr>
                                     </tbody>
                                 </table>

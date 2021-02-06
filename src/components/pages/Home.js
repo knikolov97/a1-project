@@ -2,18 +2,29 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Launches from "../Launches";
 import Pagination from "../Pagination";
+import './Home.css';
 
 function Home() {
     const [launches, setLaunches] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [launchesPerPage] = useState(10);
+    const [launchpads, setLaunchpads] = useState([{id: '', launchpad: {}}]);
 
     useEffect(() => {
         const fetchLaunches = async () => {
             setLoading(true);
+
             const res = await axios.get('https://api.spacexdata.com/v4/launches');
             setLaunches(res.data.reverse());
+
+            const res2 = await axios.get('https://api.spacexdata.com/v4/launchpads');
+            let a = [];
+            for (let i = 0; i < res2.data.length; i++) {
+                a[res2.data[i].id] = res2.data[i];
+            }
+            setLaunchpads(a);
+
             setLoading(false);
         };
 
@@ -28,9 +39,9 @@ function Home() {
 
     return (
         <div className="container">
-            <h1>Launches</h1>
-            <Launches launches={currentLaunch} loading={loading} />
-            <Pagination launchesPerPage={launchesPerPage} totalLaunches={launches.length} paginate={paginate} />
+            <h2 id="launches-header">Launches</h2>
+            <Launches launches={currentLaunch} launchpads={launchpads} loading={loading} />
+            <Pagination launchesPerPage={launchesPerPage} totalLaunches={launches.length} paginate={paginate} currentPage={currentPage}/>
         </div>
     );
 }
