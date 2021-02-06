@@ -7,7 +7,7 @@ import LaunchDetails from "./components/pages/LaunchDetails";
 
 function App() {
   return (
-      <div className="container-fluid">
+      <div>
           <Router>
               <Navbar/>
               <Switch>

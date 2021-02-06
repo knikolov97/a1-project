@@ -1,14 +1,16 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import './Navbar.css';
+import logo from '../a1-logo.png';
 
 function Navbar() {
     return (
-        <nav className="navbar navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light p-0">
             <Link to="/" >
-                Logo
+                <img id="logo" src={logo} alt={"logo"} />
             </Link>
         </nav>
     )
 }
 
-export default Navbar
+export default Navbar;

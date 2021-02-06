@@ -1,6 +1,7 @@
 import React from 'react';
 import LaunchDetails from "./pages/LaunchDetails";
 import {Link} from "react-router-dom";
+import './Launches.css';
 
 const Launches = ({launches, loading}) => {
     if (loading) {
@@ -15,7 +16,7 @@ const Launches = ({launches, loading}) => {
                 <li key={launch.id} className="list-group-item">
                     {(new Date(launch.date_utc)).toLocaleDateString('en-US', DATE_OPTIONS)}
                     <Link to={"/launch/" + launch.id} >
-                        <div onClick={LaunchDetails} className="btn btn-success">Open</div>
+                        <div onClick={LaunchDetails} className="btn btn-primary open-launch">Open</div>
                     </Link>
                 </li>
             ))}

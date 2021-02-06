@@ -27,11 +27,11 @@ function Home() {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
-        <>
+        <div className="container">
             <h1>Launches</h1>
             <Launches launches={currentLaunch} loading={loading} />
             <Pagination launchesPerPage={launchesPerPage} totalLaunches={launches.length} paginate={paginate} />
-        </>
+        </div>
     );
 }
 
