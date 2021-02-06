@@ -14,9 +14,9 @@ const Launches = ({launches, loading, launchpads}) => {
         <table className="table table-hover">
             <thead>
             <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Location</th>
-                <th scope="col" className="open-launch-th">More Info</th>
+                <th scope="col" className="green-text">Date</th>
+                <th scope="col" className="green-text">Location</th>
+                <th scope="col" className="open-launch-th green-text">More Info</th>
             </tr>
             </thead>
             <tbody>

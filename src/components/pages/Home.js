@@ -39,7 +39,7 @@ function Home() {
 
     return (
         <div className="container">
-            <h2 id="launches-header">Launches</h2>
+            <h2 id="launches-header"><b>Launches</b></h2>
             <Launches launches={currentLaunch} launchpads={launchpads} loading={loading} />
             <Pagination launchesPerPage={launchesPerPage} totalLaunches={launches.length} paginate={paginate} currentPage={currentPage}/>
         </div>
