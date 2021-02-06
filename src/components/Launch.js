@@ -43,11 +43,11 @@ const Launch = ({launchId}) => {
         <div className="container">
 
             <div className="card border-light mb-3" >
-                <div className="card-header">{launch.name}</div>
+                <div className="card-header" id="launch-name">{launch.name}</div>
                 <div className="card-body">
 
                     <div className="row mt-3 mb-3">
-                        <div className="col-md-6">
+                        <div className="col-md-6" id="textbox-details">
                             <div className="table-responsive-xl">
                                 <table className="table table-borderless">
                                     <tbody>
