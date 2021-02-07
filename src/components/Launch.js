@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './Launch.css';
+import spacexLogo from '../images/spacex-logo.png';
 
 
 const Launch = ({launchId}) => {
     const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     const [launch, setLaunch] = useState({});
-    const [launchUrl, setLaunchUrl] = useState('https://logos-world.net/wp-content/uploads/2020/09/SpaceX-Logo-700x394.png');
+    const [launchUrl, setLaunchUrl] = useState(spacexLogo);
     const [status, setStatus] = useState('');
     const [statusStyle, setStatusStyle] = useState('');
 
