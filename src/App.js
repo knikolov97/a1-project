@@ -12,8 +12,9 @@ function App() {
           <Router>
               <Navbar/>
               <Switch>
-                  <Route path="/" exact component={Home}/>
-                  <Route path={"/launch/:id"} component={LaunchDetails}/>
+                  <Route path="/" exact component={Home} />
+                  <Route path="/page/:page" component={Home} />
+                  <Route path={"/launch/:id"} component={LaunchDetails} />
               </Switch>
               <Footer/>
           </Router>

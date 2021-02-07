@@ -9,6 +9,8 @@ const Pagination = ({launchesPerPage, totalLaunches, paginate, currentPage}) => 
         pageNumbers.push(i);
     }
 
+    console.log(currentPage);
+
     return (
         <nav>
             <ul className="pagination" id="pagination">

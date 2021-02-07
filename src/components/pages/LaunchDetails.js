@@ -4,17 +4,18 @@ import Launch from "../Launch";
 import './LaunchDetails.css';
 
 function LaunchDetails() {
+    const page = localStorage.getItem("page");
 
-    const url = window.location.href.slice(window.location.href.lastIndexOf('/') + 1, window.location.href.length);
+    const launchId = window.location.href.slice(window.location.href.lastIndexOf('/') + 1, window.location.href.length);
 
     return (
         <div className="mt-5">
             <div className="row">
-                <Launch launchId={url} />
+                <Launch launchId={launchId} />
             </div>
 
             <div className="row" id="back-button">
-                <Link to="/">
+                <Link to={"/page/" + page}>
                     <div className="btn btn-primary">Back</div>
                 </Link>
             </div>

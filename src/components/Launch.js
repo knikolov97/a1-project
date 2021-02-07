@@ -14,7 +14,6 @@ const Launch = ({launchId}) => {
     const currentTimestamp = Math.floor(Date.now() / 1000);
 
     useEffect(() => {
-
         const fetchLaunches = async () => {
             const res = await axios.get('https://api.spacexdata.com/v4/launches/' + launchId);
             setLaunch(res.data);

@@ -5,11 +5,17 @@ import Pagination from "../Pagination";
 import './Home.css';
 
 function Home() {
+    let passedPage = window.location.href.slice(window.location.href.lastIndexOf('/') + 1, window.location.href.length);
+    if (passedPage !== '') {
+        passedPage = parseInt(passedPage, 10);
+    }
+
     const [launches, setLaunches] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(passedPage ? passedPage : 1);
     const [launchesPerPage] = useState(10);
     const [launchpads, setLaunchpads] = useState([{id: '', launchpad: {}}]);
+
 
     useEffect(() => {
         const fetchLaunches = async () => {
@@ -35,13 +41,16 @@ function Home() {
     const indexOfFirstLaunch = indexOfLastLaunch - launchesPerPage;
     const currentLaunch = launches.slice(indexOfFirstLaunch, indexOfLastLaunch);
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        localStorage.setItem("page", pageNumber);
+        setCurrentPage(pageNumber);
+    };
 
     return (
         <div className="container">
             <h2 id="launches-header"><b>Launches</b></h2>
             <Launches launches={currentLaunch} launchpads={launchpads} loading={loading} />
-            <Pagination launchesPerPage={launchesPerPage} totalLaunches={launches.length} paginate={paginate} currentPage={currentPage}/>
+            <Pagination launchesPerPage={launchesPerPage} totalLaunches={launches.length} paginate={paginate} currentPage={currentPage} />
         </div>
     );
 }
