@@ -16,7 +16,6 @@ function Home() {
     const [launchesPerPage] = useState(10);
     const [launchpads, setLaunchpads] = useState([{id: '', launchpad: {}}]);
 
-
     useEffect(() => {
         const fetchLaunches = async () => {
             setLoading(true);
